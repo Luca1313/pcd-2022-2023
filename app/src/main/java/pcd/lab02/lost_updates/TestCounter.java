@@ -3,8 +3,9 @@ package pcd.lab02.lost_updates;
 public class TestCounter {
 
 	public static void main(String[] args) throws Exception {
-		int ntimes = Integer.parseInt(args[0]);
-		UnsafeCounter c = new UnsafeCounter(0);
+		int ntimes = 500000;//Integer.parseInt(args[0]);
+		Object lock = new Object();
+		SafeCounter c = new SafeCounter(0, lock);
 		Worker w1 = new Worker(c,ntimes);
 		Worker w2 = new Worker(c,ntimes);
 
